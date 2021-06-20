@@ -22,10 +22,12 @@ imgFile = '/Users/vdo/Documents/Jeffrey/CMU/Courses/2021T2/49783/assignments/A4/
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]='/Users/vdo/Documents/Jeffrey/CMU/Courses/2021T2/49783/ultimate-retina-317302-4a5e9f81d23b.json';
 expectedFaceCount = int(input("Enter expected count of attendees: "));
 
-browser = webdriver.Firefox();
+browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver/geckodriver")
+#browser = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
+#browser = webdriver.Firefox();
 browser.get("https://www.zoom.us/");
 input("Press RETURN when everyone has arrived.");
-sleep(30);
+#sleep(30);
 countUses = 0;
 try:
     while browser:
@@ -45,6 +47,6 @@ try:
                 os.system('say "Alert! ' + str(expectedFaceCount - faceCount) + ' attendees are missing!"');
         
         #wait 30 seconds before checking again
-        sleep(30);
+        sleep(10);
 except Exception as e:
     print('Google Vision Calls: ' + str(countUses));
